@@ -1,30 +1,68 @@
-import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import React, {useState} from 'react';
+import { View, Text, TouchableOpacity } from 'react-native';
+
+import styles from './styles';
 
 export default function Index() {
+const [numero, setNumero] = useState(0);
+
+    function addNumber() {
+    setNumero(numero + 1);
+    }
+
+    function remNumber () {
+    setNumero(numero - 1);
+    } 
+
+    function zeroNumber () {
+    setNumero(0);
+    } 
+  
   return(
     <View style={styles.container}>
-        <Text style={styles.paragraph}>
-            Exemplo 3
-        </Text>  
+      <Text style={styles.paragraph}>
+         Exemplo 3
+      </Text>
+      <TouchableOpacity
+        onPress={() => alert('Interaja com os botões para aumentar ou diminuir a contagem.')}
+        style={styles.button}
+        >
+        <Text style={styles.textButton}>
+          Contador 
+        </Text>
+      </TouchableOpacity>
 
-        
+      <View style={styles.counter}>
+        <Text style={styles.textCounter}>{numero}</Text>
+        <TouchableOpacity
+        onPress={() => zeroNumber()}
+        style={styles.button}
+        >
+        <Text style={styles.textButton}>
+        Zerar
+        </Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+        onPress={() => remNumber()}
+        style={styles.button}
+        >
+        <Text style={styles.textButton}>
+        -
+        </Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+        onPress={() => addNumber()}
+        style={styles.button}
+        >
+        <Text style={styles.textButton}>
+        +
+        </Text>
+        </TouchableOpacity>
+
+
+      </View>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifycontent: 'center',
-    backgroundcolor:'#f5f5f5',
-    padding: 8,
-  },
-  paragraph:{
-    margin: 24,
-    fontSize: 26,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    color: '#9E9E9E',
-  },
-});
